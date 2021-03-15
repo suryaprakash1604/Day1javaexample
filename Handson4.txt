@@ -1,0 +1,170 @@
+//PRG 1
+package com.exe1;
+
+class Eggs {   
+    int doX(Long x, Long y) { return 1;}
+    int doX(long... x) { return 2;}
+    int doX(Integer x, Integer y) { return 3; }
+    int doX(Number n, Number m) { return 4; }
+
+    public static void main(String[ ] args) {
+        new Eggs().go();
+    }
+
+    void go() {
+        short s = 7;
+        System.out.println(doX(s,s) + " ");
+        System.out.println(doX(7,7));
+    }
+}
+
+4
+3
+
+//PRG 2
+
+package com.exe1;
+
+class Mixer {   
+    Mixer() { }
+    Mixer(Mixer m) { m1 = m; }
+    Mixer m1;
+    
+    public static void main(String[ ] args) {
+        Mixer m2 = new Mixer();
+        Mixer m3 = new Mixer(m2);
+        m3.go();
+        Mixer m4 = m3.m1;
+        m4.go();
+        Mixer m5 = m2.m1;
+        m5.go();
+    }
+    
+    void go() {
+        System.out.println("hi ");
+    }
+}
+
+hi hi, followed by an exception
+
+
+//PRG 3
+
+package com.exe1;
+
+class Alien {
+    String invade(short ships) {
+        return " a few";
+    }
+}
+class Defender {   
+
+    public static void main(String[] args) {
+    	System.out.println(new Alien().invade(7));
+    	
+    }
+}
+
+
+//PRG 4
+package com.exe1;
+
+class Fizz {
+    int x = 5;
+    public static void main(String[] args) {
+        final Fizz f1 = new Fizz();
+        Fizz f2 = new Fizz();
+        Fizz f3 = FizzSwitch(f1, f2);
+        System.out.println((f1 == f3) + " " + (f1.x == f3.x));
+    }
+    static Fizz FizzSwitch(Fizz x, Fizz y) {
+        final Fizz z = x;
+        z.x = 6;
+        return z;
+    }
+}
+
+true true
+
+
+//PRG 5
+package com.exe1;
+
+class Knowing {   
+    static final long tooth = 343L;
+    static long doIt(long tooth) {
+        System.out.print(++tooth + " ");
+        return ++tooth;
+    }   
+    public static void main(String[] args) {
+        System.out.print(tooth + " ");
+        final long tooth = 340L;
+        new Knowing().doIt(tooth);
+        System.out.println(tooth);
+    }
+}
+
+343  341  340
+
+
+
+//PRG 6
+package com.exe1;
+
+class Clidders {
+
+    public final void flipper() {
+        System.out.println("Clidder");
+    }
+}
+
+public class Clidlets  extends Clidders {
+
+    public void flipper() {
+
+        System.out.println("Flip a Clidlet");
+        super.flipper();
+    }
+    public static void main(String[] args) {
+        new Clidlets().flipper();
+    }   
+}
+
+Compilation fails
+
+//PRG 7
+class Programmer {
+
+     Programmer debug() { return this; }   
+
+}
+
+class SCJP extends Programmer {
+
+     // insert code here
+}
+
+Programmer debug() { return this; }
+
+
+
+//PRG 8
+package com.exe1;
+
+class Clidder {
+    private final void flipper() {
+        System.out.println("Clidder");
+    }
+}
+
+public class Clidlet  extends Clidder {
+    public final void flipper() {
+        System.out.println("Clidlet");
+    }
+    public static void main(String[] args) {
+        new Clidlet().flipper();
+    }   
+}
+
+Clidlet
+

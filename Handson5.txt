@@ -1,0 +1,135 @@
+//1
+package com.exe1;
+
+import java.util.Scanner;
+
+class UserDate{
+	static boolean b=false;
+	
+	static boolean validateDate(String date) {
+		String dateFormat = "\\d{1,2}-\\d{1,2}-\\d{4}";
+		
+		return b=date.matches(dateFormat);
+		
+	}
+	void output() {
+		if(b==true)
+			System.out.println("Valid");
+		else
+			System.out.println("Invalid");
+	}
+}
+
+public class Example1 {
+	
+	public static void main(String args[]){
+		UserDate u=new UserDate();
+		Scanner s=new Scanner(System.in);
+		String date=s.nextLine();
+		u.validateDate(date);
+		u.output();
+	}
+}
+
+
+//2
+package com.exe1;
+
+import java.util.Scanner;
+
+class Shape{
+	protected String shapeName;
+
+	public Shape(String shapeName) {
+		super();
+		this.shapeName = shapeName;
+	}	
+	double calculateArea() {
+		return 0;
+	}
+}
+class Square extends Shape{	
+	int side;	
+	public Square(String shapeName,int side) {
+		super(shapeName);
+		this.shapeName=shapeName;
+		this.side=side;
+	}
+	double calculateArea() {
+		 return side*side;
+	}
+	void output() {
+		System.out.println("Area of "+shapeName+" is:"+calculateArea());
+	}		
+}
+class Rectangle extends Shape{
+	private int length;
+	private int breadth;
+	public Rectangle(String shapeName, int length, int breadth) {
+		super(shapeName);
+		this.shapeName=shapeName;
+		this.length = length;
+		this.breadth = breadth;
+	}
+	
+	double calculateArea() {
+		return length*breadth;
+	}
+	void output() {
+		System.out.println("Area of "+shapeName+" is:"+calculateArea());
+	}
+}
+class Circle extends Shape{
+	private int radius;
+	public Circle(String shapeName, int radius) {
+		super(shapeName);
+		this.shapeName=shapeName;
+		this.radius = radius;
+	}
+	double calculateArea() {
+		return 3.14*radius*radius;
+	}
+	void output() {
+		System.out.println("Area of "+shapeName+" is:"+calculateArea());
+	}
+	
+}
+
+public class Handson {
+	
+		public static void main(String[] args) {
+		Scanner s1=new Scanner(System.in);
+		int choice,side1,length1,breadth1,radius1;
+		System.out.println("1.Rectangle\n"+"2.Square\n"+"3.Circle\n"
+		+"Area Calculator --- Choose your Shape\n");
+		choice=s1.nextInt();
+		switch(choice)
+		{
+		case 1:
+			System.out.println("Enter length and breadth");
+			length1=s1.nextInt();
+			breadth1=s1.nextInt();
+			Rectangle r=new Rectangle("Rectangle", length1, breadth1);
+			r.calculateArea();
+			r.output();
+			break;
+		case 2:
+			
+			System.out.println("Enter side:");
+		    side1=s1.nextInt();
+		    Square s=new Square("Square",side1);
+			s.calculateArea();
+			s.output();
+			break;
+		case 3:
+			System.out.println("Enter Radius:");
+			radius1=s1.nextInt();
+			Circle c=new Circle("Circle", radius1);
+			c.calculateArea();
+			c.output();
+			break;
+			
+		}
+	}
+
+}
